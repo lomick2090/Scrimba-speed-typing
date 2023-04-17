@@ -2,6 +2,7 @@ import React from "react"
 
 
 function App() {
+    const inputRef = React.useRef(null);
     const [input, setInput] = React.useState('');
     const [timeRemaining, setTimeRemaining] = React.useState(0);
     const [gamePlaying, setGamePlaying] = React.useState(false);
@@ -35,7 +36,9 @@ function App() {
     const startGame = () => {
         setInput('')
         setTimeRemaining(10)
-        setGamePlaying(true);
+        setGamePlaying(true)
+        inputRef.current.disabled = false
+        inputRef.current.focus()
     }
 
     const calculateWords = (text) => {
@@ -50,6 +53,7 @@ function App() {
                 disabled={!gamePlaying}
                 value={input}
                 onChange={handleChange}
+                ref={inputRef}
             />
 
             <h4>Time remaining: {timeRemaining}</h4>
