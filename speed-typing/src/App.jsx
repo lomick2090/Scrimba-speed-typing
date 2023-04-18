@@ -1,27 +1,22 @@
 import React from "react"
-import useWordGame from './hooks/wordGame'
+import useWordGame from './hooks/useWordGame'
 
 
 function App() {
-    const inputRef = React.useRef(null);
-    
     const {
         input,
         timeRemaining,
         gamePlaying,
         wordCount,
+        inputRef,
         handleChange,
         incrementTimer,
-        startGame,
-        calculateWords
+        startGame
     }                       = useWordGame()
-    
 
-    React.useEffect(() => {
-        if (gamePlaying) {
-            incrementTimer()
-        }
-    }, [timeRemaining, gamePlaying])
+   
+
+
 
 
 

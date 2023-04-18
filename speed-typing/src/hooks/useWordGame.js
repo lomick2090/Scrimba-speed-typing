@@ -6,11 +6,19 @@ export default function useWordGame() {
     const [gamePlaying, setGamePlaying] = React.useState(false);
     const [wordCount, setWordCount] = React.useState(null)
 
-
     const handleChange = (e) => {
         const {value} = e.target
         setInput(value)
     }
+
+
+    React.useEffect(() => {
+        if (gamePlaying) {
+            incrementTimer()
+        }
+    }, [timeRemaining, gamePlaying])
+
+    const inputRef = React.useRef(null);
 
     const incrementTimer = () => {
         if (timeRemaining > 0) {
@@ -43,9 +51,9 @@ export default function useWordGame() {
         timeRemaining,
         gamePlaying,
         wordCount,
+        inputRef,
         handleChange,
         incrementTimer,
-        startGame,
-        calculateWords
+        startGame
     }
 }
